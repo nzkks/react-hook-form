@@ -49,7 +49,7 @@ const YoutubeForm = () => {
     }
   });
 
-  const { register, control, handleSubmit, formState, watch } = form;
+  const { register, control, handleSubmit, formState, watch, getValues } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -59,6 +59,21 @@ const YoutubeForm = () => {
 
   const onSubmit = (data: FormValues) => {
     console.log('Form submitted', data);
+  };
+
+  const handleGetFieldValues = () => {
+    // {
+    //   /* get value of single field */
+    // }
+    // console.log('Get values: ', getValues('social.twitter'));
+    // {
+    //   /* get values of multiple fields */
+    // }
+    // console.log('Get values: ', getValues(['channel', 'age']));
+    {
+      /* get values of all form fields */
+    }
+    console.log('Get values: ', getValues());
   };
 
   useEffect(() => {
@@ -210,6 +225,9 @@ const YoutubeForm = () => {
 
         <div style={{ marginTop: '20px' }}>
           <button>Submit</button>
+          <button type="button" onClick={handleGetFieldValues}>
+            Get values
+          </button>
         </div>
       </form>
       <DevTool control={control} />
