@@ -49,9 +49,9 @@ const YoutubeForm = () => {
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors, touchedFields, dirtyFields, isDirty } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid } = formState;
 
-  console.log({ touchedFields, dirtyFields, isDirty });
+  console.log({ touchedFields, dirtyFields, isDirty, isValid });
   {
     /* isDirty references the state of the form. So, if isDirty is true means at least a form field has been modified (remember: default value(s) in the field(s) doesn't count) */
   }
@@ -246,7 +246,7 @@ const YoutubeForm = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}>
-          <button disabled={!isDirty}>Submit</button>
+          <button disabled={!isDirty || !isValid}>Submit</button>
           <button type="button" onClick={handleGetFieldValues}>
             Get values
           </button>
