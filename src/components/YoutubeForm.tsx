@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, useFieldArray, FieldErrors } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
@@ -112,6 +113,12 @@ const YoutubeForm = () => {
   // const watchFields = watch('username'); {/* watching single field */}
   // const watchFields = watch(['username', 'email']); {/* watching multiple fields */}
   // const watchForm = watch(); {/* watching all form fields */}
+
+  useEffect(() => {
+    if (isSubmitSuccessful) {
+      reset();
+    }
+  }, [isSubmitSuccessful, reset]);
 
   renderCount++;
 
