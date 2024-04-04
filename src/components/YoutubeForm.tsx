@@ -48,7 +48,7 @@ const YoutubeForm = () => {
     }
   });
 
-  const { register, control, handleSubmit, formState } = form;
+  const { register, control, handleSubmit, formState, watch } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -60,12 +60,17 @@ const YoutubeForm = () => {
     console.log('Form submitted', data);
   };
 
+  const watchUserName = watch('username');
+
   renderCount++;
 
   return (
     <div>
       <h1>YouTube Form ({renderCount / 2})</h1>
       {/* why dividing by 2 because in development mode, <React.StrictMode /> rerenders the app/component twice and also re-run the Effects twice to find bugs - https://react.dev/reference/react/StrictMode */}
+
+      <h5>Watched values: {watchUserName}</h5>
+
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* specifying noValidate prevent browser validation and allow React hook form to takeover the validation */}
         <div className="form-control">
