@@ -16,7 +16,8 @@ input[type='email'],
 input[type='number'],
 input[type='data'] {
   display: block;
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
   padding: 6px 12px;
   font-size: 14px;
   line-height: 1.5;
