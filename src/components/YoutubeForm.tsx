@@ -48,7 +48,7 @@ const YoutubeForm = () => {
     }
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
   const {
     errors,
     touchedFields,
@@ -259,6 +259,9 @@ const YoutubeForm = () => {
 
         <div style={{ marginTop: '20px' }}>
           <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
+          <button type="button" onClick={() => reset()}>
+            Reset
+          </button>
           <button type="button" onClick={handleGetFieldValues}>
             Get values
           </button>
