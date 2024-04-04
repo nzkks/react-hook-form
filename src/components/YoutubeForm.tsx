@@ -49,9 +49,9 @@ const YoutubeForm = () => {
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted } = formState;
 
-  console.log({ isSubmitting });
+  console.log({ isSubmitting, isSubmitted });
 
   // console.log({ touchedFields, dirtyFields, isDirty, isValid });
   {
