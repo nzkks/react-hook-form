@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useForm, useFieldArray } from 'react-hook-form';
+import { useForm, useFieldArray, FieldErrors } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
 let renderCount = 0;
@@ -66,6 +65,10 @@ const YoutubeForm = () => {
     console.log('Form submitted', data);
   };
 
+  const onerror = (errors: FieldErrors<FormValues>) => {
+    console.log('Form Errors: ', errors);
+  };
+
   const handleGetFieldValues = () => {
     // {
     //   /* get value of single field */
@@ -107,7 +110,7 @@ const YoutubeForm = () => {
 
       {/* <h5>Watched values: {JSON.stringify(watchFields)}</h5> */}
 
-      <form onSubmit={handleSubmit(onSubmit)} noValidate>
+      <form onSubmit={handleSubmit(onSubmit, onerror)} noValidate>
         {/* specifying noValidate prevent browser validation and allow React hook form to takeover the validation */}
         <div className="form-control">
           <label htmlFor="username">Username</label>
