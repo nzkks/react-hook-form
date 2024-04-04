@@ -49,7 +49,7 @@ const YoutubeForm = () => {
     }
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
   const { errors } = formState;
 
   const { fields, append, remove } = useFieldArray({
@@ -74,6 +74,11 @@ const YoutubeForm = () => {
       /* get values of all form fields */
     }
     console.log('Get values: ', getValues());
+  };
+
+  const handleSetFieldValue = () => {
+    // setValue('email', 'Pokemon'); // this will set the field value. But it doesn't validate te input OR change the field touched and field dirty status like an user interation would do.
+    setValue('email', 'Pokemon', { shouldDirty: true, shouldTouch: true, shouldValidate: true }); // This will do all as if an user interacted with the field.
   };
 
   useEffect(() => {
@@ -227,6 +232,9 @@ const YoutubeForm = () => {
           <button>Submit</button>
           <button type="button" onClick={handleGetFieldValues}>
             Get values
+          </button>
+          <button type="button" onClick={handleSetFieldValue}>
+            Set value
           </button>
         </div>
       </form>
