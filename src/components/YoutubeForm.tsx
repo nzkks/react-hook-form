@@ -1,3 +1,4 @@
+import { useEffect } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 
@@ -60,7 +61,17 @@ const YoutubeForm = () => {
     console.log('Form submitted', data);
   };
 
-  const watchUserName = watch('username');
+  useEffect(() => {
+    const subscription = watch(value => {
+      console.log(value);
+    });
+
+    return () => subscription.unsubscribe();
+  }, [watch]);
+
+  // const watchFields = watch('username'); {/* watching single field */}
+  // const watchFields = watch(['username', 'email']); {/* watching multiple fields */}
+  // const watchForm = watch(); {/* watching all form fields */}
 
   renderCount++;
 
@@ -69,7 +80,7 @@ const YoutubeForm = () => {
       <h1>YouTube Form ({renderCount / 2})</h1>
       {/* why dividing by 2 because in development mode, <React.StrictMode /> rerenders the app/component twice and also re-run the Effects twice to find bugs - https://react.dev/reference/react/StrictMode */}
 
-      <h5>Watched values: {watchUserName}</h5>
+      {/* <h5>Watched values: {JSON.stringify(watchFields)}</h5> */}
 
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* specifying noValidate prevent browser validation and allow React hook form to takeover the validation */}
