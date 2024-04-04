@@ -102,7 +102,7 @@ const YoutubeForm = () => {
 
   return (
     <div>
-      <h1>YouTube Form ({renderCount / 2})</h1>
+      <h3>Sample Form ({renderCount / 2})</h3>
       {/* why dividing by 2 because in development mode, <React.StrictMode /> rerenders the app/component twice and also re-run the Effects twice to find bugs - https://react.dev/reference/react/StrictMode */}
 
       {/* <h5>Watched values: {JSON.stringify(watchFields)}</h5> */}
