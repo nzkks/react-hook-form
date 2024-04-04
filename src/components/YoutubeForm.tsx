@@ -50,7 +50,12 @@ const YoutubeForm = () => {
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty } = formState;
+
+  console.log({ touchedFields, dirtyFields, isDirty });
+  {
+    /* isDirty references the state of the form. So, if isDirty is true means at least a form field has been modified (remember: default value(s) in the field(s) doesn't count) */
+  }
 
   const { fields, append, remove } = useFieldArray({
     name: 'phNumbers',
@@ -81,13 +86,13 @@ const YoutubeForm = () => {
     setValue('email', 'Pokemon', { shouldDirty: true, shouldTouch: true, shouldValidate: true }); // This will do all as if an user interacted with the field.
   };
 
-  useEffect(() => {
-    const subscription = watch(value => {
-      console.log(value);
-    });
+  // useEffect(() => {
+  //   const subscription = watch(value => {
+  //     console.log(value);
+  //   });
 
-    return () => subscription.unsubscribe();
-  }, [watch]);
+  //   return () => subscription.unsubscribe();
+  // }, [watch]);
 
   // const watchFields = watch('username'); {/* watching single field */}
   // const watchFields = watch(['username', 'email']); {/* watching multiple fields */}
