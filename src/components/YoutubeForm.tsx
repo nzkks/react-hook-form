@@ -164,7 +164,12 @@ const YoutubeForm = () => {
 
         <div className="form-control">
           <label htmlFor="facebook">Facebook</label>
-          <input type="text" id="facebook" {...register('social.facebook', { required: 'Facebook is required' })} />
+          <input
+            type="text"
+            id="facebook"
+            {...register('social.facebook', { disabled: watch('channel') === '', required: 'Facebook is required' })}
+          />
+          {/*Above example 'conditional disabling of an field': The Facebook field will be in disabled state untill the Channel field is empty */}
           <p className="error">{errors.social?.facebook?.message}</p>
         </div>
 
