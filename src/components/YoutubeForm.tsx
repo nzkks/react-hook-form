@@ -10,7 +10,17 @@ type FormValues = {
 };
 
 const YoutubeForm = () => {
-  const form = useForm<FormValues>();
+  {
+    /* Since we are specifying default values in the useForm hook, there is no need of Typing (<FormValues>) it. But for completeness, the Type can be there. */
+  }
+  const form = useForm<FormValues>({
+    defaultValues: {
+      username: '',
+      email: '',
+      channel: ''
+    }
+  });
+
   const { register, control, handleSubmit, formState } = form;
   const { errors } = formState;
 
