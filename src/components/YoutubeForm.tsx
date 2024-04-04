@@ -14,10 +14,15 @@ const YoutubeForm = () => {
     /* Since we are specifying default values in the useForm hook, there is no need of Typing (<FormValues>) it. But for completeness, the Type can be there. */
   }
   const form = useForm<FormValues>({
-    defaultValues: {
-      username: '',
-      email: '',
-      channel: ''
+    defaultValues: async () => {
+      const response = await fetch('https://jsonplaceholder.typicode.com/users/1');
+      const data = await response.json();
+
+      return {
+        username: 'Batman',
+        email: data.email,
+        channel: ''
+      };
     }
   });
 
