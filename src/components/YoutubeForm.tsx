@@ -11,7 +11,8 @@ type FormValues = {
 
 const YoutubeForm = () => {
   const form = useForm<FormValues>();
-  const { register, control, handleSubmit } = form;
+  const { register, control, handleSubmit, formState } = form;
+  const { errors } = formState;
 
   const onSubmit = (data: FormValues) => {
     console.log('Form submitted', data);
@@ -25,32 +26,40 @@ const YoutubeForm = () => {
       {/* why dividing by 2 because in development mode, <React.StrictMode /> rerenders the app/component twice and also re-run the Effects twice to find bugs - https://react.dev/reference/react/StrictMode */}
       <form onSubmit={handleSubmit(onSubmit)} noValidate>
         {/* specifying noValidate prevent browser validation and allow React hook form to takeover the validation */}
-        <label htmlFor="username">Username</label>
-        <input
-          type="text"
-          id="username"
-          {...register('username', {
-            required: {
-              value: true,
-              message: 'Username is required'
-            }
-          })}
-        />
+        <div className="form-control">
+          <label htmlFor="username">Username</label>
+          <input
+            type="text"
+            id="username"
+            {...register('username', {
+              required: {
+                value: true,
+                message: 'Username is required'
+              }
+            })}
+          />
+          <p className="error">{errors.username?.message}</p>
+        </div>
+        <div className="form-control">
+          <label htmlFor="email">Email</label>
+          <input
+            type="text"
+            id="email"
+            {...register('email', {
+              pattern: {
+                value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
+                message: 'Invalid email format'
+              }
+            })}
+          />
+          <p className="error">{errors.email?.message}</p>
+        </div>
 
-        <label htmlFor="email">Email</label>
-        <input
-          type="text"
-          id="email"
-          {...register('email', {
-            pattern: {
-              value: /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/,
-              message: 'Invalid email format'
-            }
-          })}
-        />
-
-        <label htmlFor="channel">Channel</label>
-        <input type="text" id="channel" {...register('channel', { required: 'Channel is required' })} />
+        <div className="form-control">
+          <label htmlFor="channel">Channel</label>
+          <input type="text" id="channel" {...register('channel', { required: 'Channel is required' })} />
+          <p className="error">{errors.channel?.message}</p>
+        </div>
 
         <button>Submit</button>
       </form>
