@@ -15,6 +15,7 @@ type FormValues = {
   phNumbers: {
     number: string;
   }[];
+  age: number;
 };
 
 const YoutubeForm = () => {
@@ -39,7 +40,8 @@ const YoutubeForm = () => {
           {
             number: ''
           }
-        ]
+        ],
+        age: 0
       };
     }
   });
@@ -164,6 +166,17 @@ const YoutubeForm = () => {
               Add phone number
             </button>
           </div>
+        </div>
+
+        <div className="form-control">
+          <label htmlFor="age">Age</label>
+          <input
+            type="number"
+            id="age"
+            {...register('age', { valueAsNumber: true, required: { value: true, message: 'age is required' } })}
+          />
+          {/* 'valueAsNumber' property makes the submitted value as number. Otherwise it will be a string */}
+          <p className="error">{errors.age?.message}</p>
         </div>
 
         <div style={{ marginTop: '20px' }}>
