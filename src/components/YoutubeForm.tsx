@@ -258,8 +258,7 @@ const YoutubeForm = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}>
-          {/* <button disabled={!isDirty || !isValid}>Submit</button> */}
-          <button>Submit</button>
+          <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
           <button type="button" onClick={handleGetFieldValues}>
             Get values
           </button>
