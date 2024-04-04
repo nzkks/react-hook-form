@@ -49,9 +49,10 @@ const YoutubeForm = () => {
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue } = form;
-  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted } = formState;
+  const { errors, touchedFields, dirtyFields, isDirty, isValid, isSubmitting, isSubmitted, isSubmitSuccessful } =
+    formState;
 
-  console.log({ isSubmitting, isSubmitted });
+  console.log({ isSubmitting, isSubmitted, isSubmitSuccessful });
 
   // console.log({ touchedFields, dirtyFields, isDirty, isValid });
   {
@@ -248,7 +249,8 @@ const YoutubeForm = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}>
-          <button disabled={!isDirty || !isValid}>Submit</button>
+          {/* <button disabled={!isDirty || !isValid}>Submit</button> */}
+          <button>Submit</button>
           <button type="button" onClick={handleGetFieldValues}>
             Get values
           </button>
