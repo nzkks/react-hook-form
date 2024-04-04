@@ -53,6 +53,9 @@ const YoutubeForm = () => {
               validate: {
                 notAdmin: fieldValue => {
                   return fieldValue !== 'admin@example.com' || 'Enter a different email address';
+                },
+                notBlackListed: fieldValue => {
+                  return !fieldValue.endsWith('baddomain.com') || 'This domain is not supported';
                 }
               }
             })}
