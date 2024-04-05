@@ -47,10 +47,10 @@ const YoutubeForm = () => {
         dob: new Date()
       };
     },
-    mode: 'onBlur' // OR 'onSubmit' (default) OR 'onTouched' (first onBlur and then onChange event) OR onChange (rerender happens on every keystroke. So careful) OR all (mode 'all' is onBlur and onChange combination)
+    mode: 'onSubmit' // OR 'onBlur' OR 'onTouched' (first onBlur and then onChange event) OR onChange (rerender happens on every keystroke. So careful) OR all (mode 'all' is onBlur and onChange combination)
   });
 
-  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
+  const { register, control, handleSubmit, formState, watch, getValues, setValue, reset, trigger } = form;
   const {
     errors,
     touchedFields,
@@ -276,6 +276,10 @@ const YoutubeForm = () => {
           </button>
           <button type="button" onClick={handleSetFieldValue}>
             Set value
+          </button>
+          <button type="button" onClick={() => trigger()}>
+            {/* trigger('channel') will trigger validation for a particular field */}
+            Validate
           </button>
         </div>
       </form>
