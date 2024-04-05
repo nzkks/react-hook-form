@@ -1,5 +1,13 @@
 import { useForm } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
+import { yupResolver } from '@hookform/resolvers/yup';
+import * as yup from 'yup';
+
+const schema = yup.object({
+  username: yup.string().required('Username is required'),
+  email: yup.string().email('Email format is not valid').required('Email is required'),
+  channel: yup.string().required('Channel is required')
+});
 
 type FormValues = {
   username: string;
@@ -15,7 +23,8 @@ const FormWithYupValidation = () => {
         email: '',
         channel: ''
       };
-    }
+    },
+    resolver: yupResolver(schema)
   });
 
   const { register, handleSubmit, formState, control } = form;
