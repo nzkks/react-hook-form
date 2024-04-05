@@ -1,7 +1,7 @@
-import './App.css';
+// import './App.css';
+import FormWithMUI from './components/FormWithMUI';
 // import FormWithYupValidation from './components/FormWithYupValidation';
-import FormWithZodValidation from './components/FormWithZodValidation';
-
+// import FormWithZodValidation from './components/FormWithZodValidation';
 // import YoutubeForm from './components/YoutubeForm';
 
 function App() {
@@ -9,7 +9,8 @@ function App() {
     <>
       <div>
         {/* <YoutubeForm /> */}
-        <FormWithZodValidation />
+        {/* <FormWithZodValidation /> */}
+        <FormWithMUI />
       </div>
     </>
   );
