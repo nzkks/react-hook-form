@@ -46,7 +46,8 @@ const YoutubeForm = () => {
         age: 0,
         dob: new Date()
       };
-    }
+    },
+    mode: 'onBlur' // OR 'onSubmit' (default) OR 'onTouched' (first onBlur and then onChange event) OR onChange (rerender happens on every keystroke. So careful) OR all (mode 'all' is onBlur and onChange combination)
   });
 
   const { register, control, handleSubmit, formState, watch, getValues, setValue, reset } = form;
@@ -181,11 +182,7 @@ const YoutubeForm = () => {
 
         <div className="form-control">
           <label htmlFor="twitter">Twitter</label>
-          <input
-            type="text"
-            id="twitter"
-            {...register('social.twitter', { disabled: true, required: 'Twitter is required' })}
-          />
+          <input type="text" id="twitter" {...register('social.twitter', { disabled: true })} />
           <p className="error">{errors.social?.twitter?.message}</p>
         </div>
 
@@ -270,7 +267,7 @@ const YoutubeForm = () => {
         </div>
 
         <div style={{ marginTop: '20px' }}>
-          <button disabled={!isDirty || isSubmitting}>Submit</button>
+          <button disabled={!isDirty || !isValid || isSubmitting}>Submit</button>
           <button type="button" onClick={() => reset()}>
             Reset
           </button>
